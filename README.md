@@ -40,7 +40,6 @@ Use this module to create CloudWatch alarms for API gateway V1 (REST APIs).
 | routes                                | List of routes for creating alarms-per-route. See [routes variable](source/api-gateway-alarms/main.tf#L50).|
 | alarm_actions                         | A list of SNS topic ARNs to send alarm events to                                           |
 | alarm_actions_enabled                 | Set to false to silence the alarms. Default true                                           |
-| alarm_slack_mention                   | Text to add into the alarm descriptions                                                    |
 | tags                                  | A map of tags to be added to AWS resources                                                 |
 
 #### Outputs
@@ -52,7 +51,6 @@ None.
 ```hcl
 module api_gateway_alarms {
   source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//api-gateway-alarms"
-  alarm_slack_mention           = "<!subteam^SJ150QDL7>"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   rest_api_name                 = "my-api-gateway"
   bad_request_rate_threshold    = 5
@@ -115,7 +113,6 @@ Use this module to create CloudWatch alarms for API gateway V2 (HTTP APIs).
 | internal_error_rate_number_of_periods | The number of periods the 5xx response rate threshold must be breached for. Default 2      |
 | alarm_actions                         | A list of SNS topic ARNs to send alarm events to                                           |
 | alarm_actions_enabled                 | Set to false to silence the alarms. Default true                                           |
-| alarm_slack_mention                   | Text to add into the alarm descriptions                                                    |
 | tags                                  | A map of tags to be added to AWS resources                                                 |
 
 #### Outputs
@@ -127,7 +124,6 @@ None.
 ```hcl
 module "api_gateway_alarms" {
   source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//api-gateway-v2-alarms"
-  alarm_slack_mention           = "<!subteam^SJ150QDL7>"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   rest_api_name                 = aws_apigatewayv2_api.example.name
   rest_api_id                   = aws_apigatewayv2_api.example.id
@@ -199,7 +195,6 @@ Use this module to create CloudWatch alarms for lambda functions.
 | concurrent_execution_number_of_periods| The number of periods the concurrent execution threshold must be breached. Default 3      |
 | alarm_actions                         | A list of SNS topic ARNs to send alarm events to                                          |
 | alarm_actions_enabled                 | Set to false to silence the alarms. Default true                                          |
-| alarm_slack_mention                   | Text to add into the alarm descriptions                                                   |
 | tags                                  | A map of tags to be added to AWS resources                                                |
 
 #### Outputs
@@ -211,7 +206,6 @@ None.
 ```hcl
 module lambda_alarms {
   source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//lambda-alarms"
-  alarm_slack_mention           = "<!subteam^SJ150QDL7>"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   function_name                 = aws_lambda_function.my_function.function_name
   error_rate_threshold          = 1
@@ -273,7 +267,6 @@ Use this module to create CloudWatch alarms for SQS queues.
 | message_age_number_of_periods   | The number of periods the message age threshold must be breached for. Default 1 |
 | alarm_actions                   | A list of SNS topic ARNs to send alarm events to                                |
 | alarm_actions_enabled           | Set to false to silence the alarms. Default true                                |
-| alarm_slack_mention             | Text to add into the alarm descriptions                                         |
 | tags                            | A map of tags to be added to AWS resources                                      |
 
 #### Outputs
@@ -285,7 +278,6 @@ None.
 ```hcl
 module sqs_alarms {
   source                = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//sqs-queue-alarms"
-  alarm_slack_mention   = "<!subteam^SJ150QDL7>"
   alarm_actions         = [module.slack_alerts.sns_topic_arn]
   queue_name            = aws_sqs_queue.my_queue.name
   deadletter_queue_name = aws_sqs_queue.my_deadletter_queue.name
