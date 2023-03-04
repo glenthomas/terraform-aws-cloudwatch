@@ -50,7 +50,7 @@ None.
 
 ```hcl
 module api_gateway_alarms {
-  source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//api-gateway-alarms"
+  source                        = "github.com/glenthomas/terraform-aws-cloudwatch//api-gateway-alarms"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   rest_api_name                 = "my-api-gateway"
   bad_request_rate_threshold    = 5
@@ -123,7 +123,7 @@ None.
 
 ```hcl
 module "api_gateway_alarms" {
-  source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//api-gateway-v2-alarms"
+  source                        = "github.com/glenthomas/terraform-aws-cloudwatch//api-gateway-v2-alarms"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   rest_api_name                 = aws_apigatewayv2_api.example.name
   rest_api_id                   = aws_apigatewayv2_api.example.id
@@ -159,7 +159,7 @@ Use this module to create a widget to place on a CloudWatch dashboard.
 
 ```hcl
 module my_widget {
-  source    = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//dashboard-widget"
+  source    = "github.com/glenthomas/terraform-aws-cloudwatch//dashboard-widget"
   title     = "HTTP requests"
   region    = "eu-west-1"
   metrics = [
@@ -205,7 +205,7 @@ None.
 
 ```hcl
 module lambda_alarms {
-  source                        = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//lambda-alarms"
+  source                        = "github.com/glenthomas/terraform-aws-cloudwatch//lambda-alarms"
   alarm_actions                 = [module.slack_alerts.sns_topic_arn]
   function_name                 = aws_lambda_function.my_function.function_name
   error_rate_threshold          = 1
@@ -244,7 +244,7 @@ None.
 
 ```hcl
 module "lambda_metrics" {
-  source                 = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//lambda-metrics"
+  source                 = "github.com/glenthomas/terraform-aws-cloudwatch//lambda-metrics"
   lambda_function_name   = aws_lambda_function.my_function.function_name
   lambda_log_group_name  = aws_cloudwatch_log_group.my_function.name
 }
@@ -277,7 +277,7 @@ None.
 
 ```hcl
 module sqs_alarms {
-  source                = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//sqs-queue-alarms"
+  source                = "github.com/glenthomas/terraform-aws-cloudwatch//sqs-queue-alarms"
   alarm_actions         = [module.slack_alerts.sns_topic_arn]
   queue_name            = aws_sqs_queue.my_queue.name
   deadletter_queue_name = aws_sqs_queue.my_deadletter_queue.name
@@ -487,7 +487,7 @@ Use this module to create metric expressions to place on a CloudWatch dashboard 
 
 ```hcl
 module metrics {
-  source            = "github.com/glenthomas/terraform-aws-cloudwatch-alarms//widget-metrics"
+  source            = "github.com/glenthomas/terraform-aws-cloudwatch//widget-metrics"
   metric_namespace  = "my-component"
 }
 ```
