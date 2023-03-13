@@ -1,4 +1,4 @@
-# AWS CloudWatch Alarms Terraform Modules
+# AWS CloudWatch Terraform Modules
 
 Terraform modules for AWS CloudWatch alarms.
 
